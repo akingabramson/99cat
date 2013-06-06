@@ -6,7 +6,8 @@ Catrenter::Application.routes.draw do
   post "/cat_rental_requests/:id" => "cat_rental_requests#approve"
 
   resources :cat_rental_requests, :only => [:index, :create, :new]
-  resource :session, :only => [:new, :destroy]
+  resources :users, :only => [:create, :new]
+  resource :session, :only => [:new, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

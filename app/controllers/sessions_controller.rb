@@ -10,10 +10,10 @@ class SessionsController < ApplicationController
         session[:token] = user.reset_session_token
         redirect_to "/cats"
       else
-        redirect_to '/sessions/new'
+        redirect_to '/session/new'
       end
     else
-      redirect_to '/sessions/new'
+      redirect_to '/session/new'
     end
   end
 end

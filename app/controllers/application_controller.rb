@@ -1,17 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def logged_in?
-    if session[:token]
-      @current_user = User.find_by_token(session[:token])
-      if @current_user
-        return true
-      else
-        return false
-      end
-    else
-      return false
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to '/session/new'
     end
-  end    
+  end
+
+  def logged_in?
+    !!current_user
+  end
+
+  def current_user
+    @current_user ||= User.find_by_token(session[:token])
+  end
 
 end

@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
-  before_filter :logged_in?
-  
+  before_filter :require_login
+
   def index
     @cats = Cat.all
     render :index
